@@ -74,10 +74,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 	set_error_handler('_exception_handler');
 
-	if ( ! is_php('5.4'))
-	{
-		@ini_set('magic_quotes_runtime', 0); // Kill magic quotes
-	}
+	// Magic quotes functionality was removed in PHP 5.4+
+	// No longer need to disable magic_quotes_runtime
 
 /*
  * ------------------------------------------------------
