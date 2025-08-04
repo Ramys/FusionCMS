@@ -245,10 +245,10 @@ class CI_Xmlrpc {
 			}
 			elseif (is_array($value['0']) && ($value['1'] == 'struct' OR $value['1'] == 'array'))
 			{
-				while (list($k) = each($value['0']))
-				{
-					$value['0'][$k] = $this->values_parsing($value['0'][$k], TRUE);
-				}
+							foreach (array_keys($value['0']) as $k)
+			{
+				$value['0'][$k] = $this->values_parsing($value['0'][$k], TRUE);
+			}
 
 				$temp = new XML_RPC_Values($value['0'], $value['1']);
 			}

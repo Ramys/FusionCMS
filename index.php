@@ -8,6 +8,18 @@ if(is_dir(__DIR__."/install") && !file_exists(__DIR__."/install/.lock"))
 
 /*
  *---------------------------------------------------------------
+ * COMPATIBILITY NOTICE
+ *---------------------------------------------------------------
+ * 
+ * This FusionCMS installation has been updated for modern PHP compatibility:
+ * - Removed deprecated magic_quotes functionality (PHP 5.4+)
+ * - Fixed deprecated each() function usage (PHP 8.0+)
+ * - Added warning for deprecated MySQL driver (use MySQLi/PDO instead)
+ * - Updated error reporting settings
+ * 
+ * For best compatibility, use PHP 7.4+ with MySQLi or PDO database drivers.
+ *
+ *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
  *---------------------------------------------------------------
  *
@@ -40,7 +52,7 @@ if (defined('ENVIRONMENT'))
 	switch (ENVIRONMENT)
 	{
 		case 'development':
-			error_reporting(E_ALL & ~E_DEPRECATED);
+			error_reporting(E_ALL);
 			ini_set('display_errors', '1');
 		break;
 	
@@ -204,18 +216,8 @@ if(!ini_get('date.timezone'))
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
 
-	if(get_magic_quotes_gpc())
-	{
-	    function stripslashes_gpc(&$value)
-	    {
-	        $value = stripslashes($value);
-	    }
-	    
-	    array_walk_recursive($_GET, 'stripslashes_gpc');
-	    array_walk_recursive($_POST, 'stripslashes_gpc');
-	    array_walk_recursive($_COOKIE, 'stripslashes_gpc');
-	    array_walk_recursive($_REQUEST, 'stripslashes_gpc');
-	}
+	// Magic quotes functionality was removed in PHP 5.4
+	// Since magic quotes are deprecated and removed, no action is needed
 	
 /*
  * --------------------------------------------------------------------

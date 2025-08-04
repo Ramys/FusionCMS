@@ -17,6 +17,10 @@
 
 /**
  * MySQL Database Adapter Class
+ * 
+ * WARNING: This driver uses the deprecated MySQL extension that was removed in PHP 7.0.
+ * For PHP 7.0+ compatibility, please use the MySQLi or PDO drivers instead.
+ * The mysql_* functions used in this driver will not work on PHP 7.0 or newer.
  *
  * Note: _DB is an extender class that the app controller
  * creates dynamically based on whether the active record
